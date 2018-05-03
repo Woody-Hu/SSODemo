@@ -17,17 +17,17 @@ namespace SSOUtility
         /// <summary>
         /// 会话Key参数名
         /// </summary>
-        public const string StrUseSessionKey = "SessionKey";
+        public const string StrUseSessionKey = "sessionKey";
 
         /// <summary>
         /// AppId参数名
         /// </summary>
-        public const string StrUseAppId = "AppId";
+        public const string StrUseAppId = "appId";
 
         /// <summary>
         /// 使用的Url参数名
         /// </summary>
-        public const string StrUseUseUrl = "UseUrl";
+        public const string StrUseUseUrl = "useUrl";
 
         /// <summary>
         /// 使用的读写锁

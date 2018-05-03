@@ -18,10 +18,13 @@ namespace SSODemo
         /// </summary>
         public static void Start() 
         {
-            FilterProviders.Providers.Remove(FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().First());
-            FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(UnityConfig.Container));
+            //FilterProviders.Providers.Remove(FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().First());
+            //FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(UnityConfig.Container));
 
-            DependencyResolver.SetResolver(new UnityDependencyResolver(UnityConfig.Container));
+            var useUnityApp = UnityUtility.UnityApplication.GetApplication();
+
+            //×¢²áUnity
+            DependencyResolver.SetResolver(new UnityDependencyResolver(useUnityApp.CoreUnityContainer));
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
             // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
@@ -32,7 +35,9 @@ namespace SSODemo
         /// </summary>
         public static void Shutdown()
         {
-            UnityConfig.Container.Dispose();
+            var useUnityApp = UnityUtility.UnityApplication.GetApplication();
+            useUnityApp.CoreUnityContainer.Dispose();
+            //UnityConfig.Container.Dispose();
         }
     }
 }
