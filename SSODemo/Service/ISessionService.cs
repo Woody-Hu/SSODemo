@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SSODemo.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,18 @@ namespace SSODemo.Service
     public interface ISessionService
     {
         /// <summary>
+        /// 储值会话
+        /// </summary>
+        /// <param name="inputSession"></param>
+        void Create(AuthSession inputSession);
+
+        /// <summary>
         /// 检查会话
         /// </summary>
         /// <param name="inputSessionId"></param>
         /// <returns></returns>
         bool CheckSession(string inputSessionId);
+
+        AuthSession Get(string inputSessionId);
     }
 }

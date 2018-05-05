@@ -14,13 +14,14 @@ namespace SSODemo.APIControllers
     {
         ISessionService m_useSeesionService;
 
+
         /// <summary>
         /// 检查会话
         /// </summary>
         /// <param name="sessionKey"></param>
         /// <returns></returns>
         [HttpGet]
-        public bool Check(string sessionKey)
+        public bool Get(string sessionKey)
         {
             return m_useSeesionService.CheckSession(sessionKey);
         }
