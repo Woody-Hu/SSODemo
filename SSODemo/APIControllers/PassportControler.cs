@@ -10,10 +10,9 @@ namespace SSODemo.APIControllers
     /// <summary>
     /// 会话检查接口
     /// </summary>
-    public class PassportControler: ApiController
+    public class PassportController: ApiController
     {
         ISessionService m_useSeesionService;
-
 
         /// <summary>
         /// 检查会话
