@@ -10,9 +10,11 @@ namespace SSODemo.APIControllers
     public class LoginController: ApiController
     {
         public ILogInOutService UseLogService { set; get; }
+
         public bool Get(string name,string pass)
         {
-            return UseLogService.LogIn(name, pass);
+            HttpContext.Current.Response.Cookies.Add(new HttpCookie( SSOUtility.SSOTool.StrUseSessionKey, Guid.NewGuid().ToString()));
+            return true;
         }
     }
 }

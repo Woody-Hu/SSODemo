@@ -29,33 +29,45 @@ namespace SSOUtility
                 filterContext.HttpContext.Response.Cookies.Add(new System.Web.HttpCookie(SSOTool.StrUseSessionKey, tempUseSessionKey));
                 filterContext.Result = ReLocate(filterContext);
             }
-            else
+            else 
             {
-                bool needSSO = true;
-
-                //若存在Cookie
-                if ( null != filterContext.HttpContext.Response.Cookies[SSOTool.StrUseSessionKey] )
+                //获取中心SSO
+                tempUseSessionKey = SSOTool.GetSSOSession();
+                if (!string.IsNullOrWhiteSpace(tempUseSessionKey))
                 {
-                    //Cookie有效检查
-                    if (!SSOTool.CheckSession(filterContext.HttpContext.Response.Cookies[SSOTool.StrUseSessionKey].Value))
+                    filterContext.HttpContext.Response.Cookies.Add(new System.Web.HttpCookie(SSOTool.StrUseSessionKey, tempUseSessionKey));
+                }
+                else
+                {
+                    bool needSSO = true;
+
+                    //若存在Cookie
+                    if (null != filterContext.HttpContext.Response.Cookies[SSOTool.StrUseSessionKey])
                     {
-                        filterContext.HttpContext.Response.Cookies.Remove(SSOTool.StrUseSessionKey);
+                        //Cookie有效检查
+                        if (!SSOTool.CheckSession(filterContext.HttpContext.Response.Cookies[SSOTool.StrUseSessionKey].Value))
+                        {
+                            filterContext.HttpContext.Response.Cookies.Remove(SSOTool.StrUseSessionKey);
+                        }
+                        //若需要SSO登陆
+                        else
+                        {
+                            needSSO = false;
+                        }
                     }
+
                     //若需要SSO登陆
-                    else
+                    if (needSSO)
                     {
-                        needSSO = false;
+                        //跳转
+                        SSOTool.SSOLoginByUrl(filterContext, filterContext.HttpContext.Request.Url.ToString());
                     }
-                }
 
-                //若需要SSO登陆
-                if (needSSO)
-                {
 
                 }
-
 
             }
+            
 
             base.OnActionExecuting(filterContext);
         }

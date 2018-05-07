@@ -77,6 +77,15 @@ namespace SSOUtility
         }
 
         /// <summary>
+        /// 获得SSO会话
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSSOSession()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// 转发到SSO登陆页面 利用Url
         /// </summary>
         /// <param name="inputContext"></param>
