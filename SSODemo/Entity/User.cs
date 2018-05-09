@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace SSODemo.Entity
+{
+    public class User
+    {
+        [MaxLength(50)]
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "用户名")]
+        public string Name { set; get; }
+
+        [MaxLength(50)]
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "密码")]
+        public string PassWord { set; get; }
+    }
+}

@@ -25,6 +25,17 @@ namespace SSODemo.Service
         /// <returns></returns>
         bool CheckSession(string inputSessionId);
 
+        /// <summary>
+        /// 删除会话
+        /// </summary>
+        /// <param name="inputSessionId"></param>
+        void Delete(string inputSessionId);
+
+        /// <summary>
+        /// 获取会话封装
+        /// </summary>
+        /// <param name="inputSessionId"></param>
+        /// <returns></returns>
         AuthSession Get(string inputSessionId);
     }
 }

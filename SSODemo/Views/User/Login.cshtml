@@ -1,0 +1,32 @@
+﻿@model SSODemo.Entity.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Login", "User", FormMethod.Post))
+        {
+            <div>
+               @Html.TextBoxFor(model => model.Name)
+            </div>
+
+            <div>
+                @Html.PasswordFor(model => model.PassWord)
+            </div>
+
+            <div >
+                <button type="submit">登录</button>
+            </div>
+        }
+    </div>
+</body>
+</html>

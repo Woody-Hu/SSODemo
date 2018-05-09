@@ -23,15 +23,5 @@ namespace SSODemo.APIControllers
         {
             return m_useSeesionService.CheckSession(sessionKey);
         }
-
-        public string Get()
-        {
-            string useStr = "AAAAA";
-            if (null != HttpContext.Current.Request.Cookies[SSOUtility.SSOTool.StrUseSessionKey])
-            {
-                useStr = HttpContext.Current.Request.Cookies[SSOUtility.SSOTool.StrUseSessionKey].Value;
-            }
-            return useStr;
-        }
     }
 }
