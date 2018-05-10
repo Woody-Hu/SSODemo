@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Web.Http;
 using System.Web.Mvc;
 
 using Unity.AspNet.Mvc;
@@ -25,6 +26,7 @@ namespace SSODemo
 
             //×¢²áUnity
             DependencyResolver.SetResolver(new UnityDependencyResolver(useUnityApp.CoreUnityContainer));
+            GlobalConfiguration.Configuration.DependencyResolver = new Unity.AspNet.WebApi.UnityDependencyResolver(useUnityApp.CoreUnityContainer);
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
             // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));

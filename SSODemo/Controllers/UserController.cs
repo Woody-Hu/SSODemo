@@ -24,7 +24,11 @@ namespace SSODemo.Controllers
             {
                 return new ContentResult() { Content = Request.Cookies[SSOUtility.SSOTool.StrUseSessionKey] .Value};
             }
-            return View();
+            else
+            {
+                return View();
+            }
+            
         }
 
         [HttpPost]
@@ -32,10 +36,27 @@ namespace SSODemo.Controllers
         {
             if (null != Request.Cookies[SSOUtility.SSOTool.StrUseSessionKey])
             {
-                return new ContentResult() { Content = "已登录" };
+                return new ContentResult() { Content =  Request.Cookies[SSOUtility.SSOTool.StrUseSessionKey].Value };
+            }
+            else if (!UseUserService.Check(inputUser.Name,inputUser.PassWord))
+            {
+                return new ContentResult() { Content = string.Format("登录失败") };
+            }
+            else
+            {
+                var tempSessionId = Guid.NewGuid().ToString();
+
+                AuthSession tempKey = new AuthSession() { SessionKey = tempSessionId, UserName = inputUser.Name };
+
+                UseSessionService.Create(tempKey);
+
+                Response.Cookies.Add(new HttpCookie(SSOUtility.SSOTool.StrUseSessionKey, tempSessionId));
+
+                return new ContentResult() { Content = tempSessionId };
+
             }
 
-            return null;
+            
         }
     }
 }

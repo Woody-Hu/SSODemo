@@ -14,9 +14,9 @@ namespace SSODemo.Service
     [Compent(Singleton = true, RegistByClass = false)]
     public class SessionServiceImp : ISessionService
     {
-        private Dictionary<string, AuthSession> m_useDic;
+        private Dictionary<string, AuthSession> m_useDic = new Dictionary<string, AuthSession>();
 
-        private ReaderWriterLockSlim m_useLock;
+        private ReaderWriterLockSlim m_useLock = new ReaderWriterLockSlim();
 
         /// <summary>
         /// 会话检查

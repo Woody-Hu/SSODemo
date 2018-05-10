@@ -2,7 +2,7 @@ using System;
 
 using Unity;
 
-namespace SSODemo
+namespace $rootnamespace$
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.
